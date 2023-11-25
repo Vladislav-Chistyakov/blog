@@ -7,7 +7,7 @@
   const { data } = await useAsyncData('data', () => $fetch(url))
 
 
-  let arr = ref([])
+  const arr = ref([])
   function log() {
     console.log(msg)
     console.warn('arr: ', arr)
@@ -22,8 +22,10 @@
       <li>
         <button @click="log">{{ msg }}</button>
       </li>
-      <li v-if="Array.isArray(arr) && arr.length" v-for="(item, index) in arr" :key="index">
-        <NuxtLink :to="`/card/${item}`">Blog: {{item}}</NuxtLink>
+      <li
+        v-for="(item, index) in arr"
+        :key="index">
+        <NuxtLink :to="`/card/${item}`">Blog: {{ item }}</NuxtLink>
       </li>
     </ul>
   </div>
