@@ -3,8 +3,10 @@
 </script>
 
 <template>
-  <h1>index page</h1>
-  <ListCard></ListCard>
+  <div>
+    <h1>index page</h1>
+    <ListCard />
+  </div>
 </template>
 
 <style scoped>

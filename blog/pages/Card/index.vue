@@ -3,7 +3,9 @@
 </script>
 
 <template>
-<div>Card page</div>
+  <div>
+    Card page
+  </div>
 </template>
 
 <style scoped>
