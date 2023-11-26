@@ -67,8 +67,8 @@ pageCount.value = numberPage.value
     <h1 class="tw-text-[84px] tw-mb-[60px]">
       Articles
     </h1>
-    <div v-if="pending">
-      Загрузка
+    <div v-if="pending" class="tw-text-[34px] tw-w-fit tw-mx-auto">
+      Loading...
     </div>
     <div v-else>
       <ul v-if="Array.isArray(activeData.pages)"
@@ -83,9 +83,10 @@ pageCount.value = numberPage.value
           <div v-if="item.preview" class="tw-text-[20xp]">
             {{ item.preview }}
           </div>
-          <button class="tw-transition-all tw-none group-hover:tw-block tw-opacity-0 group-hover:tw-opacity-100 tw-text-blog-text-purple hover:tw-underline">
+          <NuxtLink :to="`/card/${item.id}`"
+                    class="tw-transition-all tw-none group-hover:tw-block tw-opacity-0 group-hover:tw-opacity-100 tw-text-blog-text-purple hover:tw-underline">
             Read more
-          </button>
+          </NuxtLink>
         </li>
       </ul>
       <div class="tw-flex tw-flex-row">
