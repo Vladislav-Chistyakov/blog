@@ -56,7 +56,11 @@ const cardOutput = computed(() => {
           </NuxtLink>
         </li>
       </ul>
-      <PaginationBlock :data-list="dataList" :active-page="activePage"></PaginationBlock>
+      <PaginationBlock :data-list="dataList"
+                       :active-page="activePage"
+                       :card-number="cardNumber"
+                       @new-page="activePage = $event"
+      />
     </div>
   </div>
 </template>

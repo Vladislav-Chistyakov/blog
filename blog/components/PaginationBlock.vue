@@ -13,29 +13,27 @@ const props = defineProps({
     default: 1
   },
   dataList: {
-    type: Number,
-    required: true,
-    default: []
+    type: Array,
+    required: true
   }
 })
 
-const page = ref(0)
-page.value = props.activePage
+const emit = defineEmits(['newPage'])
 
-const nextPage = function () {
-  if (page.value < numberSwitchings.value) {
-    page.value++
+const nextPage  = function () {
+  if (props.activePage < numberSwitchings.value) {
+    emit('newPage', props.activePage + 1)
   } else {
-    page.value = 1
+    emit('newPage', 1)
   }
 }
 
 // Переключение на предыдущую страницу
 const previousPage = function () {
-  if (page.value > 1) {
-    page.value--
+  if (props.activePage > 1) {
+    emit('newPage', props.activePage - 1)
   } else {
-    page.value = 1
+    emit('newPage', 1)
   }
 }
 
@@ -70,8 +68,8 @@ const paginationArray = computed(() => {
       >
         <button
             class="tw-p-5 tw-m-5 tw-bg-blog-blue-btn"
-            :class="{ 'tw-bg-blog-red-main' : activePage === item }"
-            @click="activePage = item"
+            :class="{ 'tw-bg-blog-red-main' : props.activePage === item }"
+            @click="$emit('newPage', item)"
         >
           {{ item }}
         </button>
