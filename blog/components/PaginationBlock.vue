@@ -1,6 +1,4 @@
 <script setup lang="ts">
-
-// Переключение на следующую страницу
 import { computed } from 'vue'
 
 const props = defineProps({
@@ -20,23 +18,14 @@ const props = defineProps({
 
 const emit = defineEmits(['newPage'])
 
-const nextPage  = function () {
-  if (props.activePage < numberSwitchings.value) {
-    emit('newPage', props.activePage + 1)
-  } else {
-    emit('newPage', 1)
-  }
+// Переключение страниц
+const funcNewPage = function (newPage:number) {
+  emit('newPage', newPage)
 }
 
-// Переключение на предыдущую страницу
-const previousPage = function () {
-  if (props.activePage > 1) {
-    emit('newPage', props.activePage - 1)
-  } else {
-    emit('newPage', 1)
-  }
-}
-
+// Показ кнопок следующей страницы и предыдущей страницы
+const activeNextPage = computed(() => props.activePage < numberSwitchings.value ? true : false)
+const activePreviousPage = computed(() => props.activePage === 1 ? false : true)
 
 // Вывод количества переключений для пагинации
 const numberSwitchings = computed(() => Math.ceil(props.dataList.length / props.cardNumber))
@@ -57,8 +46,9 @@ const paginationArray = computed(() => {
 
 <template>
   <div class="tw-flex tw-flex-row">
-    <button class="tw-p-5 tw-m-5 tw-bg-blog-blue-btn"
-            @click="previousPage"
+    <button v-if="activePreviousPage"
+            class="tw-p-5 tw-m-5 tw-bg-blog-blue-btn"
+            @click="funcNewPage(props.activePage - 1)"
     >
       ' &lt; '
     </button>
@@ -69,15 +59,16 @@ const paginationArray = computed(() => {
         <button
             class="tw-p-5 tw-m-5 tw-bg-blog-blue-btn"
             :class="{ 'tw-bg-blog-red-main' : props.activePage === item }"
-            @click="$emit('newPage', item)"
+            @click="funcNewPage(item)"
         >
           {{ item }}
         </button>
       </li>
     </ul>
     <button
+        v-if="activeNextPage"
         class="tw-p-5 tw-m-5 tw-bg-blog-blue-btn"
-        @click="nextPage">
+        @click="funcNewPage(props.activePage + 1)">
       ' > '
     </button>
   </div>
