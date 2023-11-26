@@ -187,6 +187,7 @@ module.exports = {
         'panel-modal-bg': '#E9EDF1',
         'panel-modal-header-bg': '#DDE1E6',
         'text-gray': '#60656A',
+        'text-purple': '#E2BEFF',
         'orange-warning': '#EE9644',
         'yellow-warning': '#FEECBE',
         'orange-text': '#FF9900',

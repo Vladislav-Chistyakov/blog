@@ -64,13 +64,30 @@ pageCount.value = numberPage.value
 
 <template>
   <div class="tw-pt-[120px] tw-pb-[140px]">
-    <h1 class="tw-text-[84px]">
+    <h1 class="tw-text-[84px] tw-mb-[60px]">
       Articles
     </h1>
     <div v-if="pending">
       Загрузка
     </div>
     <div v-else>
+      <ul v-if="Array.isArray(activeData.pages)"
+          class="tw-grid tw-grid-cols-4 tw-gap-[32px] tw-mb-[50px]"
+      >
+        <li v-for="(item, index) in activeData.pages"
+            :key="index"
+            class="tw-group tw-transition-all hover:-tw-translate-y-6">
+          <div v-if="item.image && item.title" class="tw-mb-[24px]">
+            <img :src="item.image" :alt="item.title" class="tw-bg-blog-border-solid tw-min-h-[280px]">
+          </div>
+          <div v-if="item.preview" class="tw-text-[20xp]">
+            {{ item.preview }}
+          </div>
+          <button class="tw-transition-all tw-none group-hover:tw-block tw-opacity-0 group-hover:tw-opacity-100 tw-text-blog-text-purple hover:tw-underline">
+            Read more
+          </button>
+        </li>
+      </ul>
       <div class="tw-flex tw-flex-row">
         <button class="tw-p-5 tw-m-5 tw-bg-blog-blue-btn"
                 @click="oldPage"
@@ -96,21 +113,6 @@ pageCount.value = numberPage.value
           ' > '
         </button>
       </div>
-      <strong class="tw-text-amber-950 tw-p-[10px] tw-m-5 tw-block">
-        {{ activePage }}
-      </strong>
-      <ul v-if="Array.isArray(activeData.pages)">
-        <li v-for="(item, index) in activeData.pages"
-            :key="index"
-            class="tw-p-[30px] tw-border tw-border-blog-red-main tw-mb-[10px]">
-          <div class="tw-p-4">
-            indexPage: {{ activeData.indexPage }} || numberCard: {{ activeData.numberCard }}
-          </div>
-          <div class="tw-p-4">
-            {{ item.id }}
-          </div>
-        </li>
-      </ul>
     </div>
   </div>
 </template>
