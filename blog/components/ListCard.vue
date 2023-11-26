@@ -63,7 +63,10 @@ pageCount.value = numberPage.value
 </script>
 
 <template>
-  <div>
+  <div class="tw-pt-[120px] tw-pb-[140px]">
+    <h1 class="tw-text-[84px]">
+      Articles
+    </h1>
     <div v-if="pending">
       Загрузка
     </div>
@@ -108,9 +111,6 @@ pageCount.value = numberPage.value
           </div>
         </li>
       </ul>
-      <div>
-        Go to Page
-      </div>
     </div>
   </div>
 </template>

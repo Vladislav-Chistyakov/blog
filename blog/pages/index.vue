@@ -3,8 +3,7 @@
 </script>
 
 <template>
-  <div>
-    <h1>index page</h1>
+  <div class="tw-px-[112px]">
     <ListCard />
   </div>
 </template>
