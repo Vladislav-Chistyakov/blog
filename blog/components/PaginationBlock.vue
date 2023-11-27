@@ -58,8 +58,8 @@ const paginationArray = computed(() => {
       <li v-for="(item, index) in paginationArray"
           :key="index"
       >
-        <button class="tw-transition-all tw-px-[16px] tw-py-[10px] tw-bg-blog-blue-btn tw-border tw-border-[#F3F3F3] tw-bg-[#F3F3F3] tw-rounded-[12px] hover:tw-border-[#E8E8E8] hover:tw-bg-[#E8E8E8] active:tw-border-[#101010] active:tw-bg-[#101010] active:tw-text-white"
-                :class="{ 'tw-bg-blog-red-main' : props.activePage === item }"
+        <button class="tw-transition-all tw-px-[16px] tw-py-[10px] tw-border tw-border-[#F3F3F3] tw-bg-[#F3F3F3] tw-rounded-[12px] hover:tw-border-[#E8E8E8] hover:tw-bg-[#E8E8E8] active:tw-border-[#101010] active:tw-bg-[#101010] active:tw-text-white"
+                :class="{ 'tw-border-[#101010] tw-bg-[#101010] tw-text-white' : props.activePage === item }"
                 @click="funcNewPage(item)"
         >
           {{ item }}
