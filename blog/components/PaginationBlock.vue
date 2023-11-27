@@ -25,7 +25,7 @@ const funcNewPage = function (newPage:number) {
 
 // Показ кнопок следующей страницы и предыдущей страницы
 const activeNextPage = computed(() => props.activePage < numberSwitchings.value ? true : false)
-const activePreviousPage = computed(() => props.activePage === 1 ? false : true)
+const activePreviousPage = computed(() => props.activePage !== 1 ? true : false)
 
 // Вывод количества переключений для пагинации
 const numberSwitchings = computed(() => Math.ceil(props.dataList.length / props.cardNumber))
@@ -45,31 +45,34 @@ const paginationArray = computed(() => {
 </script>
 
 <template>
-  <div class="tw-flex tw-flex-row">
+  <div class="tw-flex tw-flex-row tw-gap-[8px]">
     <button v-if="activePreviousPage"
-            class="tw-p-5 tw-m-5 tw-bg-blog-blue-btn"
+            class="tw-transition-all tw-pt-[8px] tw-pr-[8px] tw-pb-[10px] tw-pl-[10px] tw-border tw-border-[#E8E8E8] tw-rounded-[12px] tw-h-fit tw-rotate-180 hover:tw-bg-[#E8E8E8]"
             @click="funcNewPage(props.activePage - 1)"
     >
-      ' &lt; '
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.5 7.5L14.5 12.5L9.5 17.5" stroke="#494949" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </button>
-    <ul class="tw-flex tw-flex-row">
+    <ul class="tw-flex tw-flex-row tw-gap-[8px]">
       <li v-for="(item, index) in paginationArray"
           :key="index"
       >
-        <button
-            class="tw-p-5 tw-m-5 tw-bg-blog-blue-btn"
-            :class="{ 'tw-bg-blog-red-main' : props.activePage === item }"
-            @click="funcNewPage(item)"
+        <button class="tw-transition-all tw-px-[16px] tw-py-[10px] tw-bg-blog-blue-btn tw-border tw-border-[#F3F3F3] tw-bg-[#F3F3F3] tw-rounded-[12px] hover:tw-border-[#E8E8E8] hover:tw-bg-[#E8E8E8] active:tw-border-[#101010] active:tw-bg-[#101010] active:tw-text-white"
+                :class="{ 'tw-bg-blog-red-main' : props.activePage === item }"
+                @click="funcNewPage(item)"
         >
           {{ item }}
         </button>
       </li>
     </ul>
-    <button
-        v-if="activeNextPage"
-        class="tw-p-5 tw-m-5 tw-bg-blog-blue-btn"
-        @click="funcNewPage(props.activePage + 1)">
-      ' > '
+    <button v-if="activeNextPage"
+            class="tw-transition-all tw-pt-[8px] tw-pr-[8px] tw-pb-[10px] tw-pl-[10px] tw-border tw-border-[#E8E8E8] tw-rounded-[12px] tw-h-fit hover:tw-bg-[#E8E8E8]"
+            @click="funcNewPage(props.activePage + 1)"
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.5 7.5L14.5 12.5L9.5 17.5" stroke="#494949" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </button>
   </div>
 </template>
